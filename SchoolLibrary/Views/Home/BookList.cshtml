@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SchoolLibrary.Models.Book>
+
+@{
+    ViewBag.Title = "BookList";
+}
+
+<h2>借阅列表</h2>
+
+    @using (Html.BeginForm("BookList", "Home", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+    {
+        <div class="form-group">
+            <label for="keyword-input" class="sr-only" placeholder="关键字">键入关键字</label>
+            <input id="keyword-input" class="form-control" type="text" name="keyword" />
+        </div>
+        <button class="btn btn-primary" type="submit">检索</button>
+    }
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishTime)
+                </td>
+                <td>
+                    <button class="btn btn-default" type="submit">借阅</button>
+                </td>
+            </tr>
+        }
+    }
+
+</table>
