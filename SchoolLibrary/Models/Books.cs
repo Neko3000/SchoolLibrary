@@ -22,5 +22,6 @@ namespace SchoolLibrary.Models
         public Nullable<int> Category_Id { get; set; }
     
         public virtual Categories Categories { get; set; }
+        public virtual int CurrentCount { get; set; }
     }
 }

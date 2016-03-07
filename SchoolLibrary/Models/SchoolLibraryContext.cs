@@ -21,5 +21,6 @@ namespace SchoolLibrary.Models
 
         public System.Data.Entity.DbSet<SchoolLibrary.Models.Book> Books { get; set; }
         public System.Data.Entity.DbSet<SchoolLibrary.Models.Category> Categories { get; set; }
+        public System.Data.Entity.DbSet<SchoolLibrary.Models.PopularBook> PopularBooks { get; set; }
     }
 }

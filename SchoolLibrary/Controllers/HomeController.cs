@@ -26,6 +26,10 @@ namespace SchoolLibrary.Controllers
                 return View(books);
             }        
         }
+        public ActionResult PopularBook(int page)
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

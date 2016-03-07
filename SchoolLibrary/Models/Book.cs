@@ -13,5 +13,6 @@ namespace SchoolLibrary.Models
         public virtual string Author { get; set; }
         public virtual DateTime PublishTime { get; set; }
         public virtual Category Category { get; set; }
+        public virtual int CurrentCount { get; set; }
     }
 }

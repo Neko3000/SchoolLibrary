@@ -16,6 +16,7 @@ namespace SchoolLibrary.Models
             // 在此处添加自定义用户声明
             return userIdentity;
         }
+        public string PhoneNubmer { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
