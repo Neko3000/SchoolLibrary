@@ -7,23 +7,14 @@
 <h2>PopularBook</h2>
 
 <div class="container">
-    @{ int sign = 0;}
+    <div class="row">
     @foreach (var item in Model)
     {
-        sign = (sign + 1) % 2;
-        @if (sign != 0)
-        {
-            <div class="row">
-        }
-                <div class="col-lg-6">
-
-                </div>              
-
-        @if (sign != 0)
-        {
-            </div>
-         }
+         <div class="col-lg-6 popular-book-block">
+             <div>@item.Title</div>
+         </div>
     }
+    </div>
 </div>
 
 

@@ -1,19 +1,19 @@
-namespace SchoolLibrary.Migrations
+namespace SchoolLibrary.Migrations.SchoolLibraryMigration
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SchoolLibrary.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SchoolLibrary.Models.SchoolLibraryContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "SchoolLibrary.Models.ApplicationDbContext";
+            MigrationsDirectory = @"Migrations\SchoolLibraryMigration";
         }
 
-        protected override void Seed(SchoolLibrary.Models.ApplicationDbContext context)
+        protected override void Seed(SchoolLibrary.Models.SchoolLibraryContext context)
         {
             //  This method will be called after migrating to the latest version.
 

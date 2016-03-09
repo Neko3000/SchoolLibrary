@@ -16,7 +16,6 @@ namespace SchoolLibrary.Models
             // 在此处添加自定义用户声明
             return userIdentity;
         }
-        public string PhoneNubmer { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -30,5 +29,7 @@ namespace SchoolLibrary.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<SchoolLibrary.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

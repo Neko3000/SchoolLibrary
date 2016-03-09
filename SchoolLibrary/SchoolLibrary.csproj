@@ -72,6 +72,10 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -157,9 +161,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -204,15 +205,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603071118380_InitialCreate.cs" />
-    <Compile Include="Migrations\201603071118380_InitialCreate.Designer.cs">
-      <DependentUpon>201603071118380_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\ApplicationDbMigration\201603090339233_InitialCreate.cs" />
+    <Compile Include="Migrations\ApplicationDbMigration\201603090339233_InitialCreate.Designer.cs">
+      <DependentUpon>201603090339233_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603071124206_PhoneNubmer.cs" />
-    <Compile Include="Migrations\201603071124206_PhoneNubmer.Designer.cs">
-      <DependentUpon>201603071124206_PhoneNubmer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\ApplicationDbMigration\Configuration.cs" />
+    <Compile Include="Migrations\SchoolLibraryMigration\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookModel.Context.cs">
@@ -247,9 +245,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-SchoolLibrary-20160306094017.mdf" />
-    <Content Include="App_Data\aspnet-SchoolLibrary-20160306094017_log.ldf">
-      <DependentUpon>aspnet-SchoolLibrary-20160306094017.mdf</DependentUpon>
+    <Content Include="App_Data\ApplicationDb.mdf" />
+    <Content Include="App_Data\ApplicationDb_log.ldf">
+      <DependentUpon>ApplicationDb.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\SchoolLibraryContext.mdf" />
     <Content Include="App_Data\SchoolLibraryContext_log.ldf">
@@ -376,13 +374,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603071118380_InitialCreate.resx">
-      <DependentUpon>201603071118380_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603071124206_PhoneNubmer.resx">
-      <DependentUpon>201603071124206_PhoneNubmer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationDbMigration\201603090339233_InitialCreate.resx">
+      <DependentUpon>201603090339233_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

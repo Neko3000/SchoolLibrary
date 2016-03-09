@@ -22,6 +22,7 @@ namespace SchoolLibrary.Controllers
         {
         }
 
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;

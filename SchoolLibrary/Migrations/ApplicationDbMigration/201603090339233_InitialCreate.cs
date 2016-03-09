@@ -1,4 +1,4 @@
-namespace SchoolLibrary.Migrations
+namespace SchoolLibrary.Migrations.ApplicationDbMigration
 {
     using System;
     using System.Data.Entity.Migrations;

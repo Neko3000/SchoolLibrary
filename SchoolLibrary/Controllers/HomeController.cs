@@ -16,19 +16,26 @@ namespace SchoolLibrary.Controllers
         }
         public ActionResult BookList(string keyword=null)
         {
-            if(keyword==null)
+            if(keyword==null||keyword=="")
             {
                 return View(db.Books.ToList());
             }
             else
             {
                 var books = db.Books.Where(a => a.Title.Contains(keyword)).Take(10).ToList();
+                //var books2 = (from book in db.Books
+                //              where book.Id == 1
+                //              select book).ToList() ;
                 return View(books);
             }        
         }
-        public ActionResult PopularBook(int page)
+        public ActionResult PopularBook(int page=1)
         {
-            return View();
+            var popularBooks = (from book in db.Books
+                                join popularBook in db.PopularBooks
+                                on book equals popularBook.BookId
+                                select book).ToList();
+            return View(popularBooks);
         }
         public ActionResult About()
         {
