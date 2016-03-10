@@ -65,6 +65,10 @@ namespace SchoolLibrary.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "账户名")]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }

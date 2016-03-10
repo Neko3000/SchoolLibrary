@@ -1,0 +1,38 @@
+﻿@model SchoolLibrary.Models.ApplicationUser
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="">
+        <h4>User</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt>
+                Roles
+            </dt>
+            @foreach (var item in ViewBag.RolesForUser)
+            {
+                <dd>@item</dd>
+            }
+            <dt>
+                Logins
+            </dt>
+            @foreach (var item in Model.Logins)
+            {
+                <dd>@Html.DisplayFor(modelItem => item.LoginProvider)</dd>
+            }
+        </dl>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

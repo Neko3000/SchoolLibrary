@@ -9,7 +9,7 @@ namespace SchoolLibrary.Migrations.SchoolLibraryMigration
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             MigrationsDirectory = @"Migrations\SchoolLibraryMigration";
         }
 
