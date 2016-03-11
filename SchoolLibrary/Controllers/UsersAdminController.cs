@@ -33,7 +33,10 @@ namespace SchoolLibrary.Controllers
         //Get: /Users/
         public async Task<ActionResult> Index()
         {
-            return View(await UserManager.Users.ToListAsync());
+            var indexVM = new UsersAdminIndexViewModel();
+            indexVM.Users = await UserManager.Users.ToListAsync();
+
+            return View(indexVM);
         }
         //Get: /Users/Details/5
         public async Task<ActionResult> Details(string id)
@@ -43,19 +46,27 @@ namespace SchoolLibrary.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = await UserManager.FindByIdAsync(id);
-            ViewBag.RolesForUser =await UserManager.GetRolesAsync(id);
-            //foreach(var item in rolesOfUser)
-            //{
-            //     item
-            //}
-            return View(user);
+            //ViewBag.RolesForUser =await UserManager.GetRolesAsync(id);
+
+            var detailsVM = new UsersAdminDetailsViewModel();
+            detailsVM.Id = user.Id;
+            detailsVM.UserName = user.UserName;
+            detailsVM.Email = user.Email;
+            detailsVM.PhoneNumber = user.PhoneNumber;
+            detailsVM.CurrentRoles = await UserManager.GetRolesAsync(user.Id);
+            detailsVM.Logins = user.Logins;
+
+            return View(detailsVM);
         }
         //Get: /User/Create
         public async Task<ActionResult> Create()
         {
             //get the list of the roles
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Id", "Name");
-            return View();
+
+            var createVM = new UsersAdminCreateViewModel();
+            createVM.Roles = RoleManager.Roles;
+            return View(createVM);
         }
 
         //Post: /Users/Create
@@ -111,14 +122,25 @@ namespace SchoolLibrary.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
+
+            
+            //ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
 
             var user = await UserManager.FindByIdAsync(id);
             if(user==null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+
+            var editVM = new UsersAdminEditViewModel();
+            editVM.Id = user.Id;
+            editVM.UserName = user.UserName;
+            editVM.Email = user.Email;
+            editVM.PhoneNumber = user.PhoneNumber;
+            editVM.CurrentRoles = await UserManager.GetRolesAsync(user.Id);
+            editVM.Roles = RoleManager.Roles;
+
+            return View(editVM);
         }
 
         //Get: /User/Edit/5

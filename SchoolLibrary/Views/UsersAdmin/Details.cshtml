@@ -1,4 +1,4 @@
-﻿@model SchoolLibrary.Models.ApplicationUser
+﻿@model SchoolLibrary.Models.UsersAdminDetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
@@ -17,7 +17,7 @@
             <dt>
                 Roles
             </dt>
-            @foreach (var item in ViewBag.RolesForUser)
+            @foreach (var item in Model.CurrentRoles)
             {
                 <dd>@item</dd>
             }

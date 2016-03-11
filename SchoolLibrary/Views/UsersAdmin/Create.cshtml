@@ -1,4 +1,4 @@
-﻿@model SchoolLibrary.Models.RegisterViewModel
+﻿@model SchoolLibrary.Models.UsersAdminCreateViewModel
 @{
     ViewBag.Title = "Create";
 }
@@ -44,7 +44,10 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Role</label>
                     <div class="col-md-10 form-group-selector">
-                        @Html.DropDownList("RoleId", "No Roles")
+                        @foreach(var item in Model.Roles)
+                        {
+                            @item.Name
+                        }
                     </div>
                 </div>
 

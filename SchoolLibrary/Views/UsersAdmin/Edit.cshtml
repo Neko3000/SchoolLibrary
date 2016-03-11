@@ -1,4 +1,4 @@
-﻿@model SchoolLibrary.Models.ApplicationUser
+﻿@model SchoolLibrary.Models.UsersAdminEditViewModel
 @{
     ViewBag.Title = "Edit";
 }
@@ -12,7 +12,6 @@
             @Html.ValidationSummary()
             @Html.HiddenFor(model => model.Id)
 
-
             <h4>User edit</h4>
             <hr />
             <div class="form-group">
@@ -25,8 +24,15 @@
             <div class="form-group">
                 <label class="control-label col-md-2"></label>
                 <div class="col-md-10">
-                    @Html.DropDownList("RoleId", "No Roles")
-                    @Html.ValidationMessageFor(model =>model.Roles, "", new { @class = "text-danger" })
+                    @foreach(var item in Model.Roles)
+                    {
+                        @item.Name;
+                    }
+                    <span>/</span>
+                    @foreach (var item in Model.CurrentRoles)
+                    {
+                        @item
+                    }
                 </div>
             </div>
             <div class="form-group">
