@@ -9,6 +9,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SchoolLibrary.Models
 {
+    //User Admin 
+    public class UsersAdminCreateViewModel
+    {
+        public IEnumerable<ApplicationUser> Users;
+    }
     //create
     public class RoleViewModel
     {
