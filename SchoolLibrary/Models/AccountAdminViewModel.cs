@@ -42,8 +42,11 @@ namespace SchoolLibrary.Models
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "账户权限")]
+        public string[] RolesForUser { get; set; }
+
         [Display(Name = "账户权限列表")]
-        public IQueryable<IdentityRole> Roles { get; set; }
+        public  IEnumerable<System.Web.Mvc.SelectListItem> Roles { get; set; }
     }
 
     //Details
@@ -61,8 +64,8 @@ namespace SchoolLibrary.Models
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name ="当前账户权限")]
-        public IList<string> CurrentRoles { get; set; }
+        [Display(Name = "账户权限")]
+        public string[] RolesForUser { get; set; }
 
         public ICollection<IdentityUserLogin> Logins { get; set; }
     }
@@ -85,11 +88,11 @@ namespace SchoolLibrary.Models
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name="当前账户权限")]
-        public IList<string> CurrentRoles { get; set; }
+        [Display(Name = "账户权限")]
+        public string[] RolesForUser { get; set; }
 
         [Display(Name = "账户权限列表")]
-        public IQueryable<IdentityRole> Roles { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> Roles { get; set; }
     }
 
     public class RoleViewModel

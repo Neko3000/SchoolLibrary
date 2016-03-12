@@ -44,10 +44,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Role</label>
                     <div class="col-md-10 form-group-selector">
-                        @foreach(var item in Model.Roles)
-                        {
-                            @item.Name
-                        }
+                        @Html.ListBoxFor(model => model.RolesForUser, Model.Roles)
                     </div>
                 </div>
 
