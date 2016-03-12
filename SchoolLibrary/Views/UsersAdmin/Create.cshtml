@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Role</label>
                     <div class="col-md-10 form-group-selector">
-                        @Html.ListBoxFor(model => model.RolesForUser, Model.Roles)
+                        @Html.ListBoxFor(model => model.RolesIdForUser, new MultiSelectList(Model.Roles,"Id","Name"))
                     </div>
                 </div>
 

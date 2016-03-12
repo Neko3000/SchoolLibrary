@@ -15,9 +15,15 @@
                 @Html.DisplayFor(model => model.UserName)
             </dd>
             <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
                 Roles
             </dt>
-            @foreach (var item in Model.RolesForUser)
+            @foreach (var item in Model.RolesNameForUser)
             {
                 <dd>@item</dd>
             }

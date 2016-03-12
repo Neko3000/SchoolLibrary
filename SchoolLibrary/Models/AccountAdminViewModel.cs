@@ -42,11 +42,12 @@ namespace SchoolLibrary.Models
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "账户权限")]
-        public string[] RolesForUser { get; set; }
+        [Display(Name = "账户权限ID")]
+        public string[] RolesIdForUser { get; set; }
 
         [Display(Name = "账户权限列表")]
-        public  IEnumerable<System.Web.Mvc.SelectListItem> Roles { get; set; }
+        public  IEnumerable<IdentityRole> Roles { get; set; }
+
     }
 
     //Details
@@ -64,8 +65,8 @@ namespace SchoolLibrary.Models
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "账户权限")]
-        public string[] RolesForUser { get; set; }
+        [Display(Name = "账户权限NAME")]
+        public string[] RolesNameForUser { get; set; }
 
         public ICollection<IdentityUserLogin> Logins { get; set; }
     }
@@ -73,6 +74,7 @@ namespace SchoolLibrary.Models
     //Edit-get/post
     public class UsersAdminEditViewModel
     {
+        [Required]
         [Display(Name = "ID")]
         public string Id { get; set; }
 
@@ -80,19 +82,14 @@ namespace SchoolLibrary.Models
         [Display(Name = "账户名")]
         public string UserName { get; set; }
 
-        [Required]
-        [EmailAddress]
-        [Display(Name = "电子邮件")]
-        public string Email { get; set; }
-
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "账户权限")]
-        public string[] RolesForUser { get; set; }
+        [Display(Name = "账户权限ID")]
+        public string[] RolesIdForUser { get; set; }
 
         [Display(Name = "账户权限列表")]
-        public IEnumerable<System.Web.Mvc.SelectListItem> Roles { get; set; }
+        public IEnumerable<IdentityRole> Roles { get; set; }
     }
 
     public class RoleViewModel

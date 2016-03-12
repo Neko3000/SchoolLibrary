@@ -33,8 +33,10 @@ namespace SchoolLibrary.Controllers
         //Get: /Users/
         public async Task<ActionResult> Index()
         {
-            var indexVM = new UsersAdminIndexViewModel();
-            indexVM.Users = await UserManager.Users.ToListAsync();
+            var indexVM = new UsersAdminIndexViewModel
+            {
+                Users = await UserManager.Users.ToListAsync()
+            };
 
             return View(indexVM);
         }
@@ -46,7 +48,6 @@ namespace SchoolLibrary.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = await UserManager.FindByIdAsync(id);
-            //ViewBag.RolesForUser =await UserManager.GetRolesAsync(id);
 
             var detailsVM = new UsersAdminDetailsViewModel
             {
@@ -54,7 +55,7 @@ namespace SchoolLibrary.Controllers
                 UserName = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                RolesForUser = new List<string>(await UserManager.GetRolesAsync(user.Id)).ToArray(),
+                RolesNameForUser = new List<string>(await UserManager.GetRolesAsync(user.Id)).ToArray(),
                 Logins = user.Logins
             };
 
@@ -64,11 +65,9 @@ namespace SchoolLibrary.Controllers
         public async Task<ActionResult> Create()
         {
             //get the list of the roles
-            //ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Id", "Name");
-
             var createVM = new UsersAdminCreateViewModel
             {
-                Roles = new SelectList(await RoleManager.Roles.ToListAsync(), "Id", "Name")
+                Roles = await RoleManager.Roles.ToListAsync()
             };
 
             return View(createVM);
@@ -76,44 +75,55 @@ namespace SchoolLibrary.Controllers
 
         //Post: /Users/Create
         [HttpPost]
-        public async Task<ActionResult> Create(RegisterViewModel userViewModel,string RoleId)
+        public async Task<ActionResult> Create(UsersAdminCreateViewModel model)
         {
             if(ModelState.IsValid)
             {
                 var user = new ApplicationUser();
-                //add UserName to the RegisterViewModel
-                user.UserName = userViewModel.UserName;
-                user.Email = userViewModel.Email;
+                user.UserName = model.UserName;
+                user.Email = model.Email;
 
-                var adminResult = await UserManager.CreateAsync(user, userViewModel.Password);
+                var adminResult = await UserManager.CreateAsync(user, model.Password);
                 if(adminResult.Succeeded)
                 {
-                    //contains RoleId 
-                    if(!string.IsNullOrEmpty(RoleId))
+                    if(model.RolesIdForUser.Count()!=0)
                     {
-                        //find role admin
-                        var role = await RoleManager.FindByIdAsync(RoleId);
-                        var result = await UserManager.AddToRoleAsync(user.Id, role.Name);
-
-                        //failed
-                        if(!result.Succeeded)
+                        //set Role for each RoleId
+                        foreach(var item in model.RolesIdForUser)
                         {
-                            ModelState.AddModelError("", result.Errors.First().ToString());
-                            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(),"Id", "Name");
-                        }
+                            var role = await RoleManager.FindByIdAsync(item);
+                            var result = await UserManager.AddToRoleAsync(user.Id, role.Name);
+
+                            //failed
+                            if (!result.Succeeded)
+                            {
+                                //failed to set role for user
+                                ModelState.AddModelError("", result.Errors.First().ToString());
+                                return View();                             
+                            }
+                        }                    
                     }
-                    else
-                    {
-                        ModelState.AddModelError("", adminResult.Errors.First().ToString());
-                        ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-                    }
+                }
+                else
+                {
+                    //failed to create user
+                    ModelState.AddModelError("", adminResult.Errors.First().ToString());     
+                    return View();
                 }
                 //succeed to add a new user
                 return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
+                //Note-Since we do not use ViewModel instead of ViewBag to pass Roles data to View
+                //So when the post of the form failed.Need Not To Rebuild Roles data
+
+                //var createVM = new UsersAdminCreateViewModel
+                //{
+                //    Roles = new SelectList(await RoleManager.Roles.ToListAsync(), "Id", "Name")
+                //};
+                //ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
+
                 //failed to add
                 return View();
             }
@@ -127,24 +137,28 @@ namespace SchoolLibrary.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            
-            //ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-
+        
             var user = await UserManager.FindByIdAsync(id);
             if(user==null)
             {
                 return HttpNotFound();
             }
 
+            //for every RoleName find it's RoleId
+            var rolesNameList = await UserManager.GetRolesAsync(user.Id);
+            var rolesIdList = new List<string>();
+            foreach(var item in rolesNameList)
+            {
+                rolesIdList.Add(RoleManager.FindByName(item).Id);
+            }
+            
             var editVM = new UsersAdminEditViewModel
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                RolesForUser = new List<string>(await UserManager.GetRolesAsync(user.Id)).ToArray(),
-                Roles = new SelectList(await RoleManager.Roles.ToListAsync(), "Id", "Name")
+                RolesIdForUser = rolesIdList.ToArray(),
+                Roles = await RoleManager.Roles.ToListAsync()
             };
 
             return View(editVM);
@@ -153,16 +167,15 @@ namespace SchoolLibrary.Controllers
         //Get: /User/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "UserName,Id,Email")] ApplicationUser formuser, string id, string RoleId)
+        public async Task<ActionResult> Edit(UsersAdminEditViewModel model)
         {
-            if (id == null)
+            if (model.Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);              
             }
-            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-            var user = await UserManager.FindByIdAsync(id);
-            user.UserName = formuser.UserName;
-            user.Email = formuser.Email;
+
+            var user = await UserManager.FindByIdAsync(model.Id);
+            user.UserName = model.UserName;
 
             if (ModelState.IsValid)
             {
@@ -172,33 +185,34 @@ namespace SchoolLibrary.Controllers
                 //if user has existing Role then remove the user from the role
                 //this also accounts for the case when the Admin selected Empty from the drop-down and
                 //this means that all roles for the user must be removed
-                var rolesForUser = await UserManager.GetRolesAsync(id);
-                if (rolesForUser.Count() > 0)
+                var currentRolesForUser = await UserManager.GetRolesAsync(user.Id);
+                if (currentRolesForUser.Count() > 0)
                 {
-                    foreach (var item in rolesForUser)
+                    foreach (var item in currentRolesForUser)
                     {
-                        var result = await UserManager.RemoveFromRoleAsync(id, item);
+                        var result = await UserManager.RemoveFromRoleAsync(user.Id, item);
                     }
                 }
 
-                if (!string.IsNullOrEmpty(RoleId))
+                if (model.RolesIdForUser!=null)
                 {
-                    //find role
-                    var role = await RoleManager.FindByIdAsync(RoleId);
-                    //add user to new role
-                    var result = await UserManager.AddToRoleAsync(id, role.Name);
-                    if (!result.Succeeded)
+                    foreach(var item in model.RolesIdForUser)
                     {
-                        ModelState.AddModelError("", result.Errors.First().ToString());
-                        ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-                        return View();
+                        //find role
+                        var role = await RoleManager.FindByIdAsync(item);
+                        //add user to new role
+                        var result = await UserManager.AddToRoleAsync(user.Id, role.Name);
+                        if (!result.Succeeded)
+                        {
+                            ModelState.AddModelError("", result.Errors.First().ToString());
+                            return View();
+                        }
                     }
                 }
                 return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
                 return View();
             }
             
