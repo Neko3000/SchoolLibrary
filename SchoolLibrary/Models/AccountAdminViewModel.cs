@@ -15,7 +15,6 @@ namespace SchoolLibrary.Models
     {
         public IEnumerable<ApplicationUser> Users { get; set; }
     }
-
     //Create-post
     public class UsersAdminCreateViewModel
     {
@@ -49,12 +48,11 @@ namespace SchoolLibrary.Models
         public  IEnumerable<IdentityRole> Roles { get; set; }
 
     }
-
     //Details
     public class UsersAdminDetailsViewModel
     {
-        [Display(Name = "ID")]
-        public string Id { get; set; }
+        [Display(Name = "账户ID")]
+        public string UserId { get; set; }
 
         [Display(Name ="账户名")]
         public string UserName { get; set; }
@@ -65,18 +63,17 @@ namespace SchoolLibrary.Models
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "账户权限NAME")]
+        [Display(Name = "账户权限名称")]
         public string[] RolesNameForUser { get; set; }
 
         public ICollection<IdentityUserLogin> Logins { get; set; }
     }
-
     //Edit-get/post
     public class UsersAdminEditViewModel
     {
         [Required]
-        [Display(Name = "ID")]
-        public string Id { get; set; }
+        [Display(Name = "账户ID")]
+        public string UserId { get; set; }
 
         [Required]
         [Display(Name = "账户名")]
@@ -92,11 +89,61 @@ namespace SchoolLibrary.Models
         public IEnumerable<IdentityRole> Roles { get; set; }
     }
 
+    //RoleAdmin
+    //Index
+    public class RolesAdminIndexViewModel
+    {
+        [Display(Name = "权限列表")]
+        public IEnumerable<IdentityRole> Roles { get; set; }
+    }
+    //Create
+    public class RolesAdminCreateViewModel
+    {
+        [Required]
+        [Display(Name="权限名称")]
+        public string RoleName{ get; set; }
+    }
+    //Details
+    public class RolesAdminDetailsViewModel
+    {
+        [Display(Name ="权限ID")]
+        public string RoleId { get; set; }
+
+        [Display(Name ="权限名称")]
+        public string RoleName { get; set; }
+
+        [Display(Name ="账户列表")]
+        public IEnumerable<ApplicationUser> Users { get; set; }
+    }
+    //Edit
+    public class RolesAdminEditViewModel
+    {
+        [Required]
+        [Display(Name ="权限ID")]
+        public string RoleId { get; set; }
+
+        [Required]
+        [Display(Name ="权限名称")]
+        public string RoleName { get; set; }
+    }
+    //Delete
+    public class RolesAdminDeleteViewModel
+    {
+        [Required]
+        [Display(Name = "权限ID")]
+        public string RoleId { get; set; }
+
+        [Display(Name = "权限名称")]
+        public string RoleName { get; set; }
+    }
+
+
+
+
     public class RoleViewModel
     {
         public string Name { get; set; }
     }
-
 
     //Edit-post
     public class RoleDetailsViewModel

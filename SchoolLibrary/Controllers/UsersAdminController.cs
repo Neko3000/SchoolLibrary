@@ -51,7 +51,7 @@ namespace SchoolLibrary.Controllers
 
             var detailsVM = new UsersAdminDetailsViewModel
             {
-                Id = user.Id,
+                UserId = user.Id,
                 UserName = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
@@ -154,7 +154,7 @@ namespace SchoolLibrary.Controllers
             
             var editVM = new UsersAdminEditViewModel
             {
-                Id = user.Id,
+                UserId = user.Id,
                 UserName = user.UserName,
                 PhoneNumber = user.PhoneNumber,
                 RolesIdForUser = rolesIdList.ToArray(),
@@ -169,12 +169,12 @@ namespace SchoolLibrary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(UsersAdminEditViewModel model)
         {
-            if (model.Id == null)
+            if (model.UserId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);              
             }
 
-            var user = await UserManager.FindByIdAsync(model.Id);
+            var user = await UserManager.FindByIdAsync(model.UserId);
             user.UserName = model.UserName;
 
             if (ModelState.IsValid)

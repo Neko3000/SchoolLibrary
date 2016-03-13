@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+﻿@model SchoolLibrary.Models.RolesAdminIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -11,10 +11,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Roles)
         </th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Roles)
     {
         <tr>
             <td>
