@@ -10,10 +10,16 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace SchoolLibrary.Models
 {
     //User Admin
+    //for show each user's multiole Roles in Index
+    public class UserRolesGroup
+    {
+        public ApplicationUser User { get; set; }
+        public IEnumerable<string> RolesForUser { get; set; }
+    }
     //Index
     public class UsersAdminIndexViewModel
     {
-        public IEnumerable<ApplicationUser> Users { get; set; }
+        public IEnumerable<UserRolesGroup> Users { get; set; }
     }
     //Create-post
     public class UsersAdminCreateViewModel

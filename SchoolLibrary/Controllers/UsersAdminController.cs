@@ -33,11 +33,22 @@ namespace SchoolLibrary.Controllers
         //Get: /Users/
         public async Task<ActionResult> Index()
         {
+            var userRolesGroupList = new List<UserRolesGroup>();
+            var users = await UserManager.Users.ToListAsync();
+            foreach(var item in users)
+            {
+                var singleUserRolesGroup = new UserRolesGroup
+                {
+                    User = item,
+                    RolesForUser = UserManager.GetRoles(item.Id)
+                };
+                userRolesGroupList.Add(singleUserRolesGroup);
+            }
+
             var indexVM = new UsersAdminIndexViewModel
             {
-                Users = await UserManager.Users.ToListAsync()
+                Users = userRolesGroupList
             };
-
             return View(indexVM);
         }
         //Get: /Users/Details/5

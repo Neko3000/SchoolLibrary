@@ -1,0 +1,39 @@
+﻿@model SchoolLibrary.Models.UsersAdminEditViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            @Html.HiddenFor(model => model.UserId)
+
+            <h4>User edit</h4>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2"></label>
+                <div class="col-md-10">
+                    <span>/</span>
+                    @Html.ListBoxFor(model => model.RolesIdForUser, new MultiSelectList(Model.Roles,"Id","Name",Model.RolesIdForUser))
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
