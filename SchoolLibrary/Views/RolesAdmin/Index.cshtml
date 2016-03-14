@@ -2,29 +2,94 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
 }
 
-<h2>Index</h2>
-<p>
-    @Html.ActionLink("Create New","Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Roles)
-        </th>
-    </tr>
-    @foreach (var item in Model.Roles)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem=>item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id}) |
-                @Html.ActionLink("Delete","Delete",new { id=item.Id })
-            </td>
-        </tr>
-    }
-</table>
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="subtitle mb5">权限列表</h5>
+        <p class="mb20">您可以在此查看并编辑权限信息.</p>
+        <div class="table-responsive">
+            <table class="table table-hidaction table-hover mb30">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>权限名</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Roles)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td class="table-action-hide">
+                                <a href="@Url.Action("Details","RolesAdmin",new { id=item.Id })">
+                                    <i class="fa fa-file-text-o"></i>
+                                </a>
+                                <a href="@Url.Action("Edit","RolesAdmin",new { id=item.Id })">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a href="@Url.Action("Delete","RolesAdmin",new { id=item.Id })">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section positionNav{
+    <li>权限</li>
+    <li class="active">权限列表</li>
+}
+
+@section scripts{
+
+    <script src="~/Content/bracket/js/jquery.datatables.min.js"></script>
+    <script src="~/Content/bracket/js/select2.min.js"></script>
+
+    <script>
+  jQuery(document).ready(function() {
+
+    "use strict";
+
+    jQuery('#table1').dataTable();
+
+    jQuery('#table2').dataTable({
+      "sPaginationType": "full_numbers"
+    });
+
+    // Select2
+    jQuery('select').select2({
+        minimumResultsForSearch: -1
+    });
+
+    jQuery('select').removeClass('form-control');
+
+    // Delete row in a table
+    jQuery('.delete-row').click(function(){
+      var c = confirm("Continue delete?");
+      if(c)
+        jQuery(this).closest('tr').fadeOut(function(){
+          jQuery(this).remove();
+        });
+
+        return false;
+    });
+
+    // Show aciton upon row hover
+    jQuery('.table-hidaction tbody tr').hover(function(){
+      jQuery(this).find('.table-action-hide a').animate({opacity: 1});
+    },function(){
+      jQuery(this).find('.table-action-hide a').animate({opacity: 0});
+    });
+
+
+  });
+    </script>
+}

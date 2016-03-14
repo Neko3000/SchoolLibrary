@@ -1,28 +1,57 @@
 ﻿@model SchoolLibrary.Models.RolesAdminDeleteViewModel
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
+}
+<div class="panel panel-default">  
+        @using (Html.BeginForm("Delete", "RolesAdmin", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-bordered" }))
+        {
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    <a class="panel-close"></a>
+                    <a class="minimize"></a>
+                </div>
+                <h4 class="panel-title">您需要对此进行确认</h4>
+            </div>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            @Html.HiddenFor(model => model.RoleId)
+            <div class="panel-body panel-body-nopadding">
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 text-danger">
+                        您确定要删除以下权限，并解绑与此关联的账户吗?
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-6 control-content">
+                        @Html.DisplayFor(model => model.RoleId)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-6 control-content">
+                        @Html.DisplayFor(model => model.RoleName)
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-danger" type="submit">删除</button>
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+
+@section positionNav{
+    <li>权限</li>
+    <li><a href="@Url.Action("Index","UsersAdmin")">权限列表</a></li>
+    <li class="active">删除权限</li>
 }
 
-<h2>Delete</h2>
-<h3>Are you sure to want to delete this Role and remove all Users from this Role?</h3>
-<div>
-    <h4>Role</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RoleName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RoleName)
-        </dd>
-    </dl>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.RoleId)
-        <div class="form-group">
-            <input class="btn btn-danger" type="submit" value="Delete" />
-            @Html.ActionLink("Back to List","Index")
-        </div>
-    }
-</div>

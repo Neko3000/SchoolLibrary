@@ -202,6 +202,7 @@
     <Compile Include="Controllers\BookManageController.cs" />
     <Compile Include="Controllers\CMSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HtmlHelpersExtension.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
@@ -728,6 +729,13 @@
     <Content Include="Views\CMS\Index.cshtml" />
     <Content Include="Views\UsersAdmin\Index - 复制.cshtml" />
     <Content Include="Views\UsersAdmin\Edit - 复制.cshtml" />
+    <Content Include="Views\UsersAdmin\Details - 复制.cshtml" />
+    <Content Include="Views\UsersAdmin\Create - 复制.cshtml" />
+    <Content Include="Views\RolesAdmin\Index - 复制.cshtml" />
+    <Content Include="Views\RolesAdmin\Details - 复制.cshtml" />
+    <Content Include="Views\RolesAdmin\Edit - 复制.cshtml" />
+    <Content Include="Views\RolesAdmin\Delete - 复制.cshtml" />
+    <Content Include="Views\RolesAdmin\Create - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,0 +1,28 @@
+﻿@model SchoolLibrary.Models.RolesAdminDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Roles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model=>model.RoleName)
+            @Html.DisplayFor(model=> model.RoleName)
+    </dl>
+</div>
+
+<h4>List of Users in Role</h4>
+<table class="table table-striped">
+    @foreach(var item in Model.Users)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem=>item.UserName)
+            </td>
+        </tr>
+    }
+</table>

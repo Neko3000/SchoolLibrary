@@ -5,7 +5,7 @@
 }
 
 <div class="panel panel-default">
-@using (Html.BeginForm("Index", "UsersAdmin", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-bordered" }))
+@using (Html.BeginForm("Edit", "UsersAdmin", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-bordered" }))
 { 
     <div class="panel-heading">
         <div class="panel-btns">
@@ -21,7 +21,21 @@
     @Html.HiddenFor(model => model.UserId)
 
     <div class="panel-body panel-body-nopadding">
-        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-6 control-content">
+                @Html.DisplayFor(model => model.UserId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-6 control-content">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model=>model.UserName,htmlAttributes:new { @class="col-sm-3 control-label"})
             <div class="col-sm-6">
@@ -33,8 +47,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "col-sm-3 control-label" })
             <div class="col-sm-6">
-                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "联系电话" } })
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "添加一个联系电话" } })
                 @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">账户权限</label>
+            <div class="col-sm-6">
+                @Html.ListBoxFor(model => model.RolesIdForUser, new MultiSelectList(Model.Roles, "Id", "Name", Model.RolesIdForUser),htmlAttributes:new { @class ="select2", @data_placeholder="选择账户权限..."})
             </div>
         </div>
 
@@ -50,3 +71,93 @@
     </div>
 }
 </div>
+
+@section positionNav{
+        <li>用户</li>
+        <li><a href="@Url.Action("Index","UsersAdmin")">用户列表</a></li>
+        <li class="active">编辑用户</li>
+}
+
+
+@section scripts{
+@Scripts.Render("~/bundles/jqueryval")
+
+<script src="~/Content/bracket/js/jquery.autogrow-textarea.js"></script>
+<script src="~/Content/bracket/js/bootstrap-timepicker.min.js"></script>
+<script src="~/Content/bracket/js/jquery.maskedinput.min.js"></script>
+<script src="~/Content/bracket/js/jquery.tagsinput.min.js"></script>
+<script src="~/Content/bracket/js/jquery.mousewheel.js"></script>
+<script src="~/Content/bracket/js/select2.min.js"></script>
+<script src="~/Content/bracket/js/dropzone.min.js"></script>
+<script src="~/Content/bracket/js/colorpicker.js"></script>
+
+    <script>
+jQuery(document).ready(function(){
+
+    "use strict";
+
+  // Tags Input
+  jQuery('#tags').tagsInput({width:'auto'});
+
+  // Select2
+  jQuery(".select2").select2({
+    width: '100%'
+  });
+
+  // Textarea Autogrow
+  jQuery('#autoResizeTA').autogrow();
+
+  // Color Picker
+  if(jQuery('#colorpicker').length > 0) {
+	 jQuery('#colorSelector').ColorPicker({
+			onShow: function (colpkr) {
+				jQuery(colpkr).fadeIn(500);
+				return false;
+			},
+			onHide: function (colpkr) {
+				jQuery(colpkr).fadeOut(500);
+				return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+				jQuery('#colorSelector span').css('backgroundColor', '#' + hex);
+				jQuery('#colorpicker').val('#'+hex);
+			}
+	 });
+  }
+
+  // Color Picker Flat Mode
+	jQuery('#colorpickerholder').ColorPicker({
+		flat: true,
+		onChange: function (hsb, hex, rgb) {
+			jQuery('#colorpicker3').val('#'+hex);
+		}
+	});
+
+  // Date Picker
+  jQuery('#datepicker').datepicker();
+
+  jQuery('#datepicker-inline').datepicker();
+
+  jQuery('#datepicker-multiple').datepicker({
+    numberOfMonths: 3,
+    showButtonPanel: true
+  });
+
+  // Spinner
+  var spinner = jQuery('#spinner').spinner();
+  spinner.spinner('value', 0);
+
+  // Input Masks
+  jQuery("#date").mask("99/99/9999");
+  jQuery("#phone").mask("(999) 999-9999");
+  jQuery("#ssn").mask("999-99-9999");
+
+  // Time Picker
+  jQuery('#timepicker').timepicker({defaultTIme: false});
+  jQuery('#timepicker2').timepicker({showMeridian: false});
+  jQuery('#timepicker3').timepicker({minuteStep: 15});
+
+
+});
+</script>
+    }

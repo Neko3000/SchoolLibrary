@@ -1,36 +1,140 @@
 ﻿@model SchoolLibrary.Models.RolesAdminEditViewModel
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
 }
 
-<div class="container">
-    <h2>Edit</h2>
-
-    @using (Html.BeginForm())
+<div class="panel panel-default">
+    @using (Html.BeginForm("Edit", "RolesAdmin", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-bordered" }))
     {
+        <div class="panel-heading">
+            <div class="panel-btns">
+                <a class="panel-close"></a>
+                <a class="minimize"></a>
+            </div>
+            <h4 class="panel-title">权限信息</h4>
+            <p>您可以在此查看并编辑单个权限的信息.</p>
+        </div>
+
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
-        @Html.HiddenFor(model=>model.RoleId)
-        <div class="form-horizontal">
+        @Html.HiddenFor(model => model.RoleId)
+
+        <div class="panel-body panel-body-nopadding">
+
             <div class="form-group">
-                @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "label-control col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RoleName, "", htmlAttributes: new { @class = "text-danger" })
+                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-6 control-content">
+                    @Html.DisplayFor(model => model.RoleId)
                 </div>
             </div>
+
             <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
-                    <input class="btn btn-primary" type="submit" value="Save" />
+                @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @placeholder = "用户名" } })
+                    @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <button class="btn btn-primary" type="submit">保存</button>
                 </div>
             </div>
         </div>
     }
-
-    <div>
-        @Html.ActionLink("Back to list", "Index")
-    </div>
 </div>
-@section Scripts{
+
+@section positionNav{
+    <li>用户</li>
+    <li><a href="@Url.Action("Index","UsersAdmin")">权限列表</a></li>
+    <li class="active">编辑权限</li>
+}
+
+
+@section scripts{
     @Scripts.Render("~/bundles/jqueryval")
-    }
+
+    <script src="~/Content/bracket/js/jquery.autogrow-textarea.js"></script>
+    <script src="~/Content/bracket/js/bootstrap-timepicker.min.js"></script>
+    <script src="~/Content/bracket/js/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/bracket/js/jquery.tagsinput.min.js"></script>
+    <script src="~/Content/bracket/js/jquery.mousewheel.js"></script>
+    <script src="~/Content/bracket/js/select2.min.js"></script>
+    <script src="~/Content/bracket/js/dropzone.min.js"></script>
+    <script src="~/Content/bracket/js/colorpicker.js"></script>
+
+    <script>
+jQuery(document).ready(function(){
+
+    "use strict";
+
+  // Tags Input
+  jQuery('#tags').tagsInput({width:'auto'});
+
+  // Select2
+  jQuery(".select2").select2({
+    width: '100%'
+  });
+
+  // Textarea Autogrow
+  jQuery('#autoResizeTA').autogrow();
+
+  // Color Picker
+  if(jQuery('#colorpicker').length > 0) {
+	 jQuery('#colorSelector').ColorPicker({
+			onShow: function (colpkr) {
+				jQuery(colpkr).fadeIn(500);
+				return false;
+			},
+			onHide: function (colpkr) {
+				jQuery(colpkr).fadeOut(500);
+				return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+				jQuery('#colorSelector span').css('backgroundColor', '#' + hex);
+				jQuery('#colorpicker').val('#'+hex);
+			}
+	 });
+  }
+
+  // Color Picker Flat Mode
+	jQuery('#colorpickerholder').ColorPicker({
+		flat: true,
+		onChange: function (hsb, hex, rgb) {
+			jQuery('#colorpicker3').val('#'+hex);
+		}
+	});
+
+  // Date Picker
+  jQuery('#datepicker').datepicker();
+
+  jQuery('#datepicker-inline').datepicker();
+
+  jQuery('#datepicker-multiple').datepicker({
+    numberOfMonths: 3,
+    showButtonPanel: true
+  });
+
+  // Spinner
+  var spinner = jQuery('#spinner').spinner();
+  spinner.spinner('value', 0);
+
+  // Input Masks
+  jQuery("#date").mask("99/99/9999");
+  jQuery("#phone").mask("(999) 999-9999");
+  jQuery("#ssn").mask("999-99-9999");
+
+  // Time Picker
+  jQuery('#timepicker').timepicker({defaultTIme: false});
+  jQuery('#timepicker2').timepicker({showMeridian: false});
+  jQuery('#timepicker3').timepicker({minuteStep: 15});
+
+
+});
+    </script>
+}

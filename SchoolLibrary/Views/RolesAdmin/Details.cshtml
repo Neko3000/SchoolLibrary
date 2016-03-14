@@ -1,28 +1,56 @@
 ﻿@model SchoolLibrary.Models.RolesAdminDetailsViewModel
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Roles</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model=>model.RoleName)
-            @Html.DisplayFor(model=> model.RoleName)
-    </dl>
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <div class="panel-btns">
+            <a class="panel-close"></a>
+            <a class="minimize"></a>
+        </div>
+        <h4 class="panel-title">@(Model.RoleName)的权限信息</h4>
+        <p>您可以在此查看单个权限的信息.</p>
+    </div>
+
+    <div class="panel-body panel-body-nopadding">
+        <div class="form-horizontal form-bordered">
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-6 control-content">
+                    @Html.DisplayFor(model => model.RoleId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-6 control-content">
+                    @Html.DisplayFor(model => model.RoleName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Users, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-6 control-content">
+                    @foreach (var item in Model.Users)
+                    {
+                        <div class="row">
+                            <div class="col-sm-12">
+                                @item.UserName
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<h4>List of Users in Role</h4>
-<table class="table table-striped">
-    @foreach(var item in Model.Users)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem=>item.UserName)
-            </td>
-        </tr>
-    }
-</table>
+@section positionNav{
+    <li>用户</li>
+    <li><a href="@Url.Action("Index","UsersAdmin")">用户列表</a></li>
+    <li class="active">用户信息</li>
+}

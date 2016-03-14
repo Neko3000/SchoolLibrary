@@ -1,0 +1,28 @@
+﻿@model SchoolLibrary.Models.RolesAdminDeleteViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<h3>Are you sure to want to delete this Role and remove all Users from this Role?</h3>
+<div>
+    <h4>Role</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.RoleId)
+        <div class="form-group">
+            <input class="btn btn-danger" type="submit" value="Delete" />
+            @Html.ActionLink("Back to List","Index")
+        </div>
+    }
+</div>

@@ -40,7 +40,7 @@
                                 }
                             </td>
                             <td class="table-action-hide">
-                                <a href="">
+                                <a href="@Url.Action("Details","UsersAdmin",new { id=item.User.Id })">
                                     <i class="fa fa-file-text-o"></i>
                                 </a>
                                 <a href="@Url.Action("Edit","UsersAdmin",new { id=item.User.Id })">
@@ -55,10 +55,15 @@
     </div>
 </div>
 
+@section positionNav{
+        <li>用户</li>
+        <li class="active">用户列表</li>
+}
+
 @section scripts{
 
-   
 <script src="~/Content/bracket/js/jquery.datatables.min.js"></script>
+<script src="~/Content/bracket/js/select2.min.js"></script>
 
   <script>
   jQuery(document).ready(function() {

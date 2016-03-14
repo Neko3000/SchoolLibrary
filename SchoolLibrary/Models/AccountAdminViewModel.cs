@@ -85,6 +85,9 @@ namespace SchoolLibrary.Models
         [Display(Name = "账户名")]
         public string UserName { get; set; }
 
+        [Display(Name = "电子邮件")]
+        public string Email { get; set; }
+
         [Display(Name = "联系电话")]
         public string PhoneNumber { get; set; }
 

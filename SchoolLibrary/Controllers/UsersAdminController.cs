@@ -167,6 +167,7 @@ namespace SchoolLibrary.Controllers
             {
                 UserId = user.Id,
                 UserName = user.UserName,
+                Email=user.Email,
                 PhoneNumber = user.PhoneNumber,
                 RolesIdForUser = rolesIdList.ToArray(),
                 Roles = await RoleManager.Roles.ToListAsync()
@@ -187,6 +188,7 @@ namespace SchoolLibrary.Controllers
 
             var user = await UserManager.FindByIdAsync(model.UserId);
             user.UserName = model.UserName;
+            user.PhoneNumber = model.PhoneNumber;
 
             if (ModelState.IsValid)
             {

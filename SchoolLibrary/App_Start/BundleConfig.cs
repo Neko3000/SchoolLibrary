@@ -65,14 +65,6 @@ namespace SchoolLibrary
                       "~/Content/bracket/js/toggles.min.js",
                       "~/Content/bracket/js/retina.min.js",
                       "~/Content/bracket/js/jquery.cookies.js",
-                      "~/Content/bracket/js/jquery.autogrow-textarea.js",
-                      "~/Content/bracket/js/bootstrap-timepicker.min.js",
-                      "~/Content/bracket/js/jquery.maskedinput.min.js",
-                      "~/Content/bracket/js/jquery.tagsinput.min.js",
-                      "~/Content/bracket/js/jquery.mousewheel.js",
-                      "~/Content/bracket/js/select2.min.js",
-                      "~/Content/bracket/js/dropzone.min.js",
-                      "~/Content/bracket/js/colorpicker.js",
                       "~/Content/bracket/js/custom.js"
                       ));
         }
