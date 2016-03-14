@@ -511,9 +511,35 @@
     <Content Include="Content\bracket\js\select2.min.js" />
     <Content Include="Content\bracket\js\toggles.min.js" />
     <Content Include="Content\bracket\js\wysihtml5-0.3.0.min.js" />
+    <Content Include="Content\img\bookImg\001.jpg" />
     <Content Include="Content\img\wallhaven-137197.jpg" />
     <Content Include="Content\img\wallhaven-149164.jpg" />
     <Content Include="Content\img\wallhaven-278761.jpg" />
+    <Content Include="Content\jquery-ui-1.11.4\external\jquery\jquery.js" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\jquery-ui-1.11.4\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui-1.11.4\index.html" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.css" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.js" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.min.js" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.structure.min.css" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.theme.css" />
+    <Content Include="Content\jquery-ui-1.11.4\jquery-ui.theme.min.css" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\SiteStyle.css">
       <DependentUpon>SiteStyle.less</DependentUpon>
     </Content>
@@ -736,6 +762,8 @@
     <Content Include="Views\RolesAdmin\Edit - 复制.cshtml" />
     <Content Include="Views\RolesAdmin\Delete - 复制.cshtml" />
     <Content Include="Views\RolesAdmin\Create - 复制.cshtml" />
+    <Content Include="Views\BookManage\Index - 复制.cshtml" />
+    <Content Include="Views\BookManage\Edit - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

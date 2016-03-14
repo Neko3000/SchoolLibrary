@@ -4,7 +4,21 @@
     Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
 }
 
-<div class="panel panel-default">
+<div class="pageheader">
+    <h2><i class="fa fa-edit"></i> General Forms <span>Subtitle goes here...</span></h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","CMS")">首页</a></li>
+            <li>用户</li>
+            <li><a href="@Url.Action("Index","UsersAdmin")">用户列表</a></li>
+            <li class="active">用户信息</li>
+        </ol>
+    </div>
+</div>
+
+<div class="contentpanel">
+    <div class="panel panel-default">
 
         <div class="panel-heading">
             <div class="panel-btns">
@@ -59,11 +73,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
-</div>
+        </div>
+    </div>
+</div><!-- contentpanel -->
 
-@section positionNav{
-        <li>用户</li>
-        <li><a href="@Url.Action("Index","UsersAdmin")">权限列表</a></li>
-        <li class="active">权限信息</li>
-}

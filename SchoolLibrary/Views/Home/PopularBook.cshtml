@@ -9,10 +9,17 @@
 <div class="container">
     <div class="row">
     @foreach (var item in Model)
-    {
-         <div class="col-lg-6 popular-book-block">
-             <div>@item.Title</div>
+    {<div class="col-lg-6 popular-book-block-container">
+         <div class="popular-book-block">
+             <div class="popular-book-block-post">
+                 <img src="~/Content/img/bookImg/001.jpg" />
+             </div>
+             <div class="popular-book-block-content">
+                 <h3>@item.Title</h3>
+                 <p>@item.Description</p>
+             </div>
          </div>
+    </div>       
     }
     </div>
 </div>

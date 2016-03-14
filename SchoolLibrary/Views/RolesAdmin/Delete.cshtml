@@ -3,7 +3,22 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
 }
-<div class="panel panel-default">  
+
+<div class="pageheader">
+    <h2><i class="fa fa-edit"></i> General Forms <span>Subtitle goes here...</span></h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","CMS")">首页</a></li>
+            <li>权限</li>
+            <li><a href="@Url.Action("Index","RolesAdmin")">权限列表</a></li>
+            <li class="active">删除权限</li>
+        </ol>
+    </div>
+</div>
+
+<div class="contentpanel">
+    <div class="panel panel-default">
         @using (Html.BeginForm("Delete", "RolesAdmin", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-bordered" }))
         {
             <div class="panel-heading">
@@ -47,11 +62,9 @@
                 </div>
             </div>
         }
-</div>
+    </div>
 
-@section positionNav{
-    <li>权限</li>
-    <li><a href="@Url.Action("Index","UsersAdmin")">权限列表</a></li>
-    <li class="active">删除权限</li>
-}
+</div><!-- contentpanel -->
+
+
 

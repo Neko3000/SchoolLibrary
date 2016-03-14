@@ -3,80 +3,89 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
 }
-
-<div class="panel panel-default">
-@using (Html.BeginForm("Edit", "UsersAdmin", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-bordered" }))
-{ 
-    <div class="panel-heading">
-        <div class="panel-btns">
-            <a class="panel-close"></a>
-            <a class="minimize"></a>
-        </div>
-        <h4 class="panel-title">用户信息</h4>
-        <p>您可以在此查看并编辑单个用户的信息.</p>
+<div class="pageheader">
+    <h2><i class="fa fa-edit"></i> General Forms <span>Subtitle goes here...</span></h2>
+    <div class="breadcrumb-wrapper">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","CMS")">首页</a></li>
+            <li>用户</li>
+            <li><a href="@Url.Action("Index","UsersAdmin")">用户列表</a></li>
+            <li class="active">编辑用户</li>
+        </ol>
     </div>
-
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
-    @Html.HiddenFor(model => model.UserId)
-
-    <div class="panel-body panel-body-nopadding">
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "col-sm-3 control-label" })
-            <div class="col-sm-6 control-content">
-                @Html.DisplayFor(model => model.UserId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-3 control-label" })
-            <div class="col-sm-6 control-content">
-                @Html.DisplayFor(model => model.Email)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model=>model.UserName,htmlAttributes:new { @class="col-sm-3 control-label"})
-            <div class="col-sm-6">
-                @Html.EditorFor(model=>model.UserName,new { htmlAttributes = new { @class = "form-control" ,@placeholder="用户名" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "col-sm-3 control-label" })
-            <div class="col-sm-6">
-                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "添加一个联系电话" } })
-                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label">账户权限</label>
-            <div class="col-sm-6">
-                @Html.ListBoxFor(model => model.RolesIdForUser, new MultiSelectList(Model.Roles, "Id", "Name", Model.RolesIdForUser),htmlAttributes:new { @class ="select2", @data_placeholder="选择账户权限..."})
-            </div>
-        </div>
-
-        
-    </div>
-
-    <div class="panel-footer">
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <button class="btn btn-primary" type="submit">保存</button>
-            </div>
-        </div>
-    </div>
-}
 </div>
 
-@section positionNav{
-        <li>用户</li>
-        <li><a href="@Url.Action("Index","UsersAdmin")">用户列表</a></li>
-        <li class="active">编辑用户</li>
-}
+<div class="contentpanel">
+    <div class="panel panel-default">
+        @using (Html.BeginForm("Edit", "UsersAdmin", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal form-bordered" }))
+        {
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    <a class="panel-close"></a>
+                    <a class="minimize"></a>
+                </div>
+                <h4 class="panel-title">用户信息</h4>
+                <p>您可以在此查看并编辑单个用户的信息.</p>
+            </div>
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            @Html.HiddenFor(model => model.UserId)
+
+            <div class="panel-body panel-body-nopadding">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-6 control-content">
+                        @Html.DisplayFor(model => model.UserId)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-6 control-content">
+                        @Html.DisplayFor(model => model.Email)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-6">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "用户名" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-6">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "添加一个联系电话" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">账户权限</label>
+                    <div class="col-sm-6">
+                        @Html.ListBoxFor(model => model.RolesIdForUser, new MultiSelectList(Model.Roles, "Id", "Name", Model.RolesIdForUser), htmlAttributes: new { @class = "select2", @data_placeholder = "选择账户权限..." })
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-primary" type="submit">保存</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div><!-- contentpanel -->
+
 
 
 @section scripts{
