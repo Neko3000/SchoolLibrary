@@ -66,6 +66,7 @@ namespace SchoolLibrary.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                CurrentUserId=userId,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),

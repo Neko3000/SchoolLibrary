@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookManageController.cs" />
+    <Compile Include="Controllers\BorrowingBooksController.cs" />
     <Compile Include="Controllers\CMSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HtmlHelpersExtension.cs" />
@@ -214,6 +215,14 @@
       <DependentUpon>201603090339233_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationDbMigration\Configuration.cs" />
+    <Compile Include="Migrations\SchoolLibraryMigration\201603150124551_InitialDatabaseCreation.cs" />
+    <Compile Include="Migrations\SchoolLibraryMigration\201603150124551_InitialDatabaseCreation.Designer.cs">
+      <DependentUpon>201603150124551_InitialDatabaseCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SchoolLibraryMigration\201603150352170_Add-BorrowingRecords-Table.cs" />
+    <Compile Include="Migrations\SchoolLibraryMigration\201603150352170_Add-BorrowingRecords-Table.Designer.cs">
+      <DependentUpon>201603150352170_Add-BorrowingRecords-Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SchoolLibraryMigration\Configuration.cs" />
     <Compile Include="Models\AccountAdminViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -241,7 +250,7 @@
     </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LendRecord.cs" />
+    <Compile Include="Models\BorrowingRecord.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PopularBook.cs" />
     <Compile Include="Models\SchoolLibraryContext.cs" />
@@ -512,6 +521,7 @@
     <Content Include="Content\bracket\js\toggles.min.js" />
     <Content Include="Content\bracket\js\wysihtml5-0.3.0.min.js" />
     <Content Include="Content\img\bookImg\001.jpg" />
+    <Content Include="Content\img\bookImg\002.jpg" />
     <Content Include="Content\img\wallhaven-137197.jpg" />
     <Content Include="Content\img\wallhaven-149164.jpg" />
     <Content Include="Content\img\wallhaven-278761.jpg" />
@@ -764,6 +774,7 @@
     <Content Include="Views\RolesAdmin\Create - 复制.cshtml" />
     <Content Include="Views\BookManage\Index - 复制.cshtml" />
     <Content Include="Views\BookManage\Edit - 复制.cshtml" />
+    <Content Include="Views\BorrowingBooks\ShowAccountRecord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -776,6 +787,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\ApplicationDbMigration\201603090339233_InitialCreate.resx">
       <DependentUpon>201603090339233_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SchoolLibraryMigration\201603150124551_InitialDatabaseCreation.resx">
+      <DependentUpon>201603150124551_InitialDatabaseCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SchoolLibraryMigration\201603150352170_Add-BorrowingRecords-Table.resx">
+      <DependentUpon>201603150352170_Add-BorrowingRecords-Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

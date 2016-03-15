@@ -8,6 +8,7 @@
     <h2>借阅列表</h2>
     @using (Html.BeginForm("BookList", "Home", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
     {
+
         <div class="form-group">
             <label for="keyword-input" class="sr-only" placeholder="关键字">键入关键字</label>
             <input id="keyword-input" class="form-control" type="text" name="keyword" />
@@ -39,8 +40,11 @@
 
         @foreach (var item in Model)
         {
-            using (Html.BeginForm())
+            using (Html.BeginForm("CreateRecord","BorrowingBooks"))
             {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("BookId",item.Id)
+                @Html.Hidden("UserId",(string)ViewBag.UserId)
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
@@ -59,7 +63,7 @@
                     </td>
 
                     <td>
-                        <button class="btn btn-default @(item.CurrentCount>=0?"" :"") " type="submit">借阅</button>
+                        <button class="btn btn-default @(@item.CurrentCount <= 0? "disabled":"") @(item.CurrentCount>=0?"" :"") " type="submit">借阅</button>
                     </td>
                 </tr>
             }

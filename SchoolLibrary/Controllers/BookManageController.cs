@@ -80,7 +80,7 @@ namespace SchoolLibrary.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Author,PublishTime")] Book book)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Author,PublishTime,PictureUrl")] Book book)
         {
             if (ModelState.IsValid)
             {

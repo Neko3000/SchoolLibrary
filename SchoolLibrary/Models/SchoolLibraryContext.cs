@@ -19,8 +19,14 @@ namespace SchoolLibrary.Models
         {
         }
 
+        public static SchoolLibraryContext Create()
+        {
+            return new SchoolLibraryContext();
+        }
+
         public System.Data.Entity.DbSet<SchoolLibrary.Models.Book> Books { get; set; }
         public System.Data.Entity.DbSet<SchoolLibrary.Models.Category> Categories { get; set; }
         public System.Data.Entity.DbSet<SchoolLibrary.Models.PopularBook> PopularBooks { get; set; }
+        public System.Data.Entity.DbSet<SchoolLibrary.Models.BorrowingRecord> BorrowingRecords { get; set; }
     }
 }

@@ -30,6 +30,8 @@ namespace SchoolLibrary.Models
             return new ApplicationDbContext();
         }
 
+        //public System.Data.Entity.DbSet<SchoolLibrary.Models.Book> Books { get; set; }
+
         //public System.Data.Entity.DbSet<SchoolLibrary.Models.ApplicationUser> ApplicationUsers { get; set; }
 
     }

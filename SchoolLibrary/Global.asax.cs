@@ -14,7 +14,7 @@ namespace SchoolLibrary
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new SchoolLibraryContextInitializer());
+            //Database.SetInitializer(new SchoolLibraryContextInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

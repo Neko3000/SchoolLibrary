@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SchoolLibrary.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SchoolLibrary.Controllers
 {
@@ -16,8 +17,10 @@ namespace SchoolLibrary.Controllers
         }
         public ActionResult BookList(string keyword=null)
         {
+            var userId = User.Identity.GetUserId();
             if(keyword==null||keyword=="")
             {
+                ViewBag.UserId = userId;
                 return View(db.Books.ToList());
             }
             else
@@ -26,6 +29,7 @@ namespace SchoolLibrary.Controllers
                 //var books2 = (from book in db.Books
                 //              where book.Id == 1
                 //              select book).ToList() ;
+                ViewBag.UserId = userId;
                 return View(books);
             }        
         }
