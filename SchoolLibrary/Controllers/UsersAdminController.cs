@@ -14,6 +14,8 @@ using System.Data.Entity;
 
 using System.Net;
 
+using PagedList;
+
 namespace SchoolLibrary.Controllers
 {
     public class UsersAdminController : Controller
@@ -31,7 +33,7 @@ namespace SchoolLibrary.Controllers
         }
 
         //Get: /Users/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page)
         {
             var userRolesGroupList = new List<UserRolesGroup>();
             var users = await UserManager.Users.ToListAsync();
@@ -45,9 +47,13 @@ namespace SchoolLibrary.Controllers
                 userRolesGroupList.Add(singleUserRolesGroup);
             }
 
+            var pageSize = 10;
+            var pageNumber = page ?? 1;
+            var onePageOfUserRolesGroup = userRolesGroupList.ToPagedList(pageNumber, pageSize);
+            ViewBag.OnePageOfUserRolesGroup = onePageOfUserRolesGroup;
             var indexVM = new UsersAdminIndexViewModel
             {
-                Users = userRolesGroupList
+                Users = onePageOfUserRolesGroup
             };
             return View(indexVM);
         }
