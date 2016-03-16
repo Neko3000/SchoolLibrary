@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SchoolLibrary.Models;
 using Microsoft.AspNet.Identity;
+using System.Net;
 
 namespace SchoolLibrary.Controllers
 {
@@ -14,6 +15,15 @@ namespace SchoolLibrary.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult BookDetails(int? id)
+        {
+            if(id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var book=db.Books.Find(id);
+            return View(book);
         }
         public ActionResult BookList(string keyword=null)
         {

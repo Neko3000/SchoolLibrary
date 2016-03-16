@@ -7,19 +7,19 @@
 <div class="container">
     <div class="row">
         @foreach (var item in Model)
-
-        {<div class="col-sm-6 col-md-4 popular-book-block">
-            <div class="thumbnail">
-                <img src="~/Content/img/bookImg/@item.PictureUrl" alt="...">
-                <div class="caption">
-                    <h3>@item.Title</h3>
-                    <p>@item.Description</p>
-                    <p class="btns">
-                        <a href="#" class="btn btn-primary" role="button">详情</a>
-                    </p>
+        {
+            <div class="col-sm-6 col-md-4 popular-book-block">
+                <div class="thumbnail">
+                    <img src="~/Content/img/bookImg/@item.PictureUrl" alt="...">
+                    <div class="caption">
+                        <h3>@item.Title</h3>
+                        <p>@item.Description</p>
+                        <p class="btns">
+                            <a href="@Url.Action("BookDetails","Home",new { id=item.Id })" class="btn btn-primary" role="button">详情</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 </div>

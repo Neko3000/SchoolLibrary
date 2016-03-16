@@ -1,0 +1,57 @@
+﻿@model SchoolLibrary.Models.Book
+
+@{
+    ViewBag.Title = "BookDetails";
+}
+
+
+<div class="container">
+    <div class="row show-book-block">
+        <div class="col-md-6 col-md-offset-3">
+            <img class="img-responsive" src="~/Content/img/bookImg/@(Model.PictureUrl)" />
+        </div>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentCount)
+        </dd>
+
+    </dl>
+</div>

@@ -606,10 +606,6 @@
       <DependentUpon>BookModel.edmx</DependentUpon>
     </Content>
     <Content Include="Content\SiteStyle.less" />
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -716,6 +712,10 @@
     <Content Include="Content\bracket\images\prettyphoto\light_rounded\_div style=" />
     <Content Include="Content\bracket\images\prettyphoto\light_square\_div style=" />
     <Content Include="Content\bracket\css\bracketCustom.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -792,6 +792,7 @@
     <Content Include="Views\PopularBookManage\Details.cshtml" />
     <Content Include="Views\PopularBookManage\Edit.cshtml" />
     <Content Include="Views\PopularBookManage\Index.cshtml" />
+    <Content Include="Views\Home\BookDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
