@@ -69,7 +69,7 @@
                     </li>
 
                     <li class="nav-parent @Html.IsActiveForController("PopularBookManage")">
-                        <a href=""><i class="fa fa-suitcase"></i> <span>热门书籍</span></a>
+                        <a href=""><i class="fa fa-comments"></i> <span>热门书籍</span></a>
                         <ul class="children">
                             <li class="@Html.IsActive("PopularBookManage","Index")"><a href="@Url.Action("Index","PopularBookManage")"><i class="fa fa-caret-right"></i> 热门书籍列表</a></li>
                             <li class="@Html.IsActive("PopularBookManage","Create")"><a href="@Url.Action("Create","PopularBookManage")"><span class="pull-right badge badge-danger"></span><i class="fa fa-caret-right"></i> 添加一本新的热门书籍</a></li> 
@@ -79,7 +79,7 @@
                     <li class="nav-parent  @Html.IsActiveForController("BookManage")">
                         <a href="">
                             <span class="pull-right badge badge-success">2</span>
-                            <i class="fa fa-envelope-o"></i> <span>书籍</span>
+                            <i class="fa fa-book"></i> <span>书籍</span>
                         </a>
                         <ul class="children">
                             <li class="@Html.IsActive("BookManage","Index")"><a href="@Url.Action("Index","BookManage")"><i class="fa fa-caret-right"></i> 书籍列表</a></li>
@@ -88,7 +88,7 @@
                     </li>
 
                     <li class="nav-parent @Html.IsActiveForController("UsersAdmin")">
-                        <a href=""><i class="fa fa-edit"></i> <span>用户</span></a>
+                        <a href=""><i class="fa fa-user"></i> <span>用户</span></a>
                         <ul class="children">
                             <li class="@Html.IsActive("UsersAdmin","Index")"><a href="@Url.Action("Index","UsersAdmin")"><i class="fa fa-caret-right"></i> 用户列表</a></li>
                             <li class="@Html.IsActive("UsersAdmin","Create")"><a href="@Url.Action("Create","UsersAdmin")"><i class="fa fa-caret-right"></i> 添加一个新的用户</a></li>
@@ -96,7 +96,7 @@
                     </li>
 
                     <li class="nav-parent  @Html.IsActiveForController("RolesAdmin")">
-                        <a href=""><i class="fa fa-edit"></i> <span>权限</span></a>
+                        <a href=""><i class="fa fa-users"></i> <span>权限</span></a>
                         <ul class="children">
                             <li class="@Html.IsActive("RolesAdmin","Index")"><a href="@Url.Action("Index","RolesAdmin")"><i class="fa fa-caret-right"></i> 权限列表</a></li>
                             <li class="@Html.IsActive("RolesAdmin","Create")"><a href="@Url.Action("Create","RolesAdmin")"><i class="fa fa-caret-right"></i> 添加一个新的权限</a></li>
