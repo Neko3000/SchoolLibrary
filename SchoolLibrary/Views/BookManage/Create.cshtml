@@ -11,8 +11,8 @@
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
             <li><a href="@Url.Action("Index","CMS")">首页</a></li>
-            <li>权限</li>
-            <li class="active">添加权限</li>
+            <li>书籍</li>
+            <li class="active">添加书籍</li>
         </ol>
     </div>
 </div>
@@ -26,8 +26,8 @@
                     <a class="panel-close"></a>
                     <a class="minimize"></a>
                 </div>
-                <h4 class="panel-title">添加一个新的权限</h4>
-                <p>您可以在此添加一个新的权限.</p>
+                <h4 class="panel-title">添加一个新的书籍</h4>
+                <p>您可以在此添加一个新的书籍.</p>
             </div>
 
             @Html.AntiForgeryToken()
@@ -38,7 +38,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-6">
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "包含其含义" } })
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "" } })
                         @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-6">
-                        @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control", @placeholder = "包含其含义" } })
+                        @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control", @placeholder = "" } })
                         @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-6">
-                        @Html.EditorFor(model => model.Category.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "包含其含义" } })
+                        @Html.EditorFor(model => model.Category.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "输入一个新的或者已有的分类" } })
                         @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-6">
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "包含其含义" } })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "" } })
                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.PublishTime, htmlAttributes: new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-6">
-                        @Html.EditorFor(model => model.PublishTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "包含其含义" } })
+                        @Html.EditorFor(model => model.PublishTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "示例-2016/11/12" } })
                         @Html.ValidationMessageFor(model => model.PublishTime, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CurrentCount, htmlAttributes: new { @class = "col-sm-3 control-label" })
                     <div class="col-sm-6">
-                        @Html.EditorFor(model => model.CurrentCount, new { htmlAttributes = new { @class = "form-control", @placeholder = "包含其含义" } })
+                        @Html.EditorFor(model => model.CurrentCount, new { htmlAttributes = new { @class = "form-control", @placeholder = "", @type = "text" } })
                         @Html.ValidationMessageFor(model => model.CurrentCount, "", new { @class = "text-danger" })
                     </div>
                 </div>

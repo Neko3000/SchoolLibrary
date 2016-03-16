@@ -5,14 +5,17 @@
     Layout = "~/Views/Shared/_LayoutForCMS.cshtml";
 }
 
+@using PagedList;
+@using PagedList.Mvc;
+
 <div class="pageheader">
     <h2><i class="fa fa-edit"></i> General Forms <span>Subtitle goes here...</span></h2>
     <div class="breadcrumb-wrapper">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
             <li><a href="@Url.Action("Index","CMS")">首页</a></li>
-            <li>用户</li>
-            <li class="active">用户列表</li>
+            <li>书籍</li>
+            <li class="active">书籍列表</li>
         </ol>
     </div>
 </div>
@@ -20,8 +23,8 @@
 <div class="contentpanel">
     <div class="row">
         <div class="col-md-12">
-            <h5 class="subtitle mb5">账户列表</h5>
-            <p class="mb20">您可以在此查看并编辑用户信息.</p>
+            <h5 class="subtitle mb5">书籍列表</h5>
+            <p class="mb20">您可以在此查看并编辑书籍信息.</p>
             <div class="table-responsive">
                 <table class="table table-hidaction table-hover mb30">
                     <thead>
@@ -63,6 +66,7 @@
             </div>
         </div>
     </div>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "BookManage", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
 </div><!-- contentpanel -->
 
 

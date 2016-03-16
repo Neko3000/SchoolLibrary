@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using SchoolLibrary.Models;
 
+using PagedList;
+
 namespace SchoolLibrary.Controllers
 {
     public class BookManageController : Controller
@@ -15,9 +17,13 @@ namespace SchoolLibrary.Controllers
         private SchoolLibraryContext db = new SchoolLibraryContext();
 
         // GET: BookManage
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Books.ToList());
+            var pageSize = 10;
+            var pageNumber = page ?? 1;
+            var onePageOfBooks = db.Books.ToList().ToPagedList(pageNumber, pageSize);
+            ViewBag.OnePageOfBooks = onePageOfBooks;
+            return View(onePageOfBooks);
         }
 
         // GET: BookManage/Details/5

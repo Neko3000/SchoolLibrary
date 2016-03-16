@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SchoolLibrary.Models;
+using PagedList;
 
 namespace SchoolLibrary.Controllers
 {
@@ -15,10 +16,13 @@ namespace SchoolLibrary.Controllers
         private SchoolLibraryContext db = new SchoolLibraryContext();
 
         // GET: PopularBookManage
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var x = db.PopularBooks.ToList();
-            return View(x);
+            var pageSize = 10;
+            var pageNumber = page ?? 1;
+            var onePageOfPopularBooksBooks = db.PopularBooks.ToList().ToPagedList(pageNumber, pageSize);
+            ViewBag.OnePageOfPopularBooksBooks = onePageOfPopularBooksBooks;
+            return View(onePageOfPopularBooksBooks);
         }
 
         // GET: PopularBookManage/Details/5
