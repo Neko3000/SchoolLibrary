@@ -13,3 +13,7 @@ table th {
 li.nav-parent.active ul {
   display: block;
 }
+.headerbar-copy {
+  height: 50px;
+  background-color: white;
+}
