@@ -226,6 +226,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HtmlHelpersExtension.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PopularBookManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -797,6 +798,14 @@
     <Content Include="Views\BookManage\Index - 复制.cshtml" />
     <Content Include="Views\BookManage\Edit - 复制.cshtml" />
     <Content Include="Views\BorrowingBooks\ShowAccountRecord.cshtml" />
+    <Content Include="Views\BookManage\Details - 复制.cshtml" />
+    <Content Include="Views\BookManage\Create - 复制.cshtml" />
+    <Content Include="Views\BookManage\Delete - 复制.cshtml" />
+    <Content Include="Views\PopularBookManage\Create.cshtml" />
+    <Content Include="Views\PopularBookManage\Delete.cshtml" />
+    <Content Include="Views\PopularBookManage\Details.cshtml" />
+    <Content Include="Views\PopularBookManage\Edit.cshtml" />
+    <Content Include="Views\PopularBookManage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

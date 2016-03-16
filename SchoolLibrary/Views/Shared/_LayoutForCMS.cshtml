@@ -62,28 +62,28 @@
                 <h5 class="sidebartitle">Navigation</h5>
                 <ul class="nav nav-pills nav-stacked nav-bracket">
                     <li class="@Html.IsActiveForController("CMS")">
-                        <a href="index.html">
+                        <a href="@Url.Action("Index","CMS")">
                             <i class="fa fa-home"></i>
                             <span>总览</span>
                         </a>
                     </li>
 
-                    <li class="nav-parent">
+                    <li class="nav-parent @Html.IsActiveForController("PopularBookManage")">
                         <a href=""><i class="fa fa-suitcase"></i> <span>热门书籍</span></a>
                         <ul class="children">
-                            <li><a href="buttons.html"><i class="fa fa-caret-right"></i> 热门书籍列表</a></li>
-                            <li><a href="icons.html"><span class="pull-right badge badge-danger"></span><i class="fa fa-caret-right"></i> 添加一本新的热门书籍</a></li> 
+                            <li class="@Html.IsActive("PopularBookManage","Index")"><a href="@Url.Action("Index","PopularBookManage")"><i class="fa fa-caret-right"></i> 热门书籍列表</a></li>
+                            <li class="@Html.IsActive("PopularBookManage","Create")"><a href="@Url.Action("Create","PopularBookManage")"><span class="pull-right badge badge-danger"></span><i class="fa fa-caret-right"></i> 添加一本新的热门书籍</a></li> 
                         </ul>
                     </li>
 
-                    <li class="nav-parent">
-                        <a href="email.html">
+                    <li class="nav-parent  @Html.IsActiveForController("BookManage")">
+                        <a href="">
                             <span class="pull-right badge badge-success">2</span>
                             <i class="fa fa-envelope-o"></i> <span>书籍</span>
                         </a>
                         <ul class="children">
-                            <li><a href="general-forms.html"><i class="fa fa-caret-right"></i> 书籍列表</a></li>
-                            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> 添加一本新的书籍</a></li>
+                            <li class="@Html.IsActive("BookManage","Index")"><a href="@Url.Action("Index","BookManage")"><i class="fa fa-caret-right"></i> 书籍列表</a></li>
+                            <li class="@Html.IsActive("BookManage","Create")"><a href="@Url.Action("Create","BookManage")"><i class="fa fa-caret-right"></i> 添加一本新的书籍</a></li>
                         </ul>
                     </li>
 

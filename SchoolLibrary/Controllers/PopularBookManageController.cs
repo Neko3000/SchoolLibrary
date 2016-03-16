@@ -10,117 +10,110 @@ using SchoolLibrary.Models;
 
 namespace SchoolLibrary.Controllers
 {
-    public class BookManageController : Controller
+    public class PopularBookManageController : Controller
     {
         private SchoolLibraryContext db = new SchoolLibraryContext();
 
-        // GET: BookManage
+        // GET: PopularBookManage
         public ActionResult Index()
         {
-            return View(db.Books.ToList());
+            var x = db.PopularBooks.ToList();
+            return View(x);
         }
 
-        // GET: BookManage/Details/5
+        // GET: PopularBookManage/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
+            PopularBook popularBook = db.PopularBooks.Find(id);
+            if (popularBook == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryList = new SelectList(db.Categories, "Id", "Name", book.Category);
-            return View(book);
+            return View(popularBook);
         }
 
-        // GET: BookManage/Create
+        // GET: PopularBookManage/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BookManage/Create
+        // POST: PopularBookManage/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Book book)
+        public ActionResult Create(PopularBook popularBook)
         {
-            var cateGoryListInDb = (from category in db.Categories
-                                    where category.Name == book.Category.Name
-                                    select category).ToList();
-            if (cateGoryListInDb.Count !=0)
-            {
-                book.Category = cateGoryListInDb.ElementAt(0);
-            }
-
             if (ModelState.IsValid)
             {
-                db.Books.Add(book);
+                popularBook.BookId = db.Books.Find(popularBook.BookId.Id);
+                popularBook.RecordedTime = DateTime.Now;
+                db.PopularBooks.Add(popularBook);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(book);
+            return View(popularBook);
         }
 
-        // GET: BookManage/Edit/5
+        // GET: PopularBookManage/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
+            PopularBook popularBook = db.PopularBooks.Find(id);
+            if (popularBook == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryList = new SelectList(db.Categories, "Id", "Name", book.Category);
-            return View(book);
+            return View(popularBook);
         }
 
-        // POST: BookManage/Edit/5
+        // POST: PopularBookManage/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Author,PublishTime,PictureUrl")] Book book)
+        public ActionResult Edit([Bind(Include = "Id,RecordedTime,Discription")] PopularBook popularBook)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(book).State = EntityState.Modified;
+                db.Entry(popularBook).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(book);
+            return View(popularBook);
         }
 
-        // GET: BookManage/Delete/5
+        // GET: PopularBookManage/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
+            PopularBook popularBook = db.PopularBooks.Find(id);
+            if (popularBook == null)
             {
                 return HttpNotFound();
             }
-            return View(book);
+            return View(popularBook);
         }
 
-        // POST: BookManage/Delete/5
+        // POST: PopularBookManage/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Book book = db.Books.Find(id);
-            db.Books.Remove(book);
+            PopularBook popularBook = db.PopularBooks.Find(id);
+            db.PopularBooks.Remove(popularBook);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
