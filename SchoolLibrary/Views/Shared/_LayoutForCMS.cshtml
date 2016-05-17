@@ -76,6 +76,13 @@
                         </ul>
                     </li>
 
+                    <li class="nav-parent @Html.IsActiveForController("BorrowingRecordManage")">
+                        <a href=""><i class="fa fa-reorder"></i> <span>借阅记录</span></a>
+                        <ul class="children">
+                            <li class="@Html.IsActive("BorrowingRecordManage", "Index")"><a href="@Url.Action("Index","BorrowingRecordManage")"><i class="fa fa-caret-right"></i> 借阅记录列表</a></li>                    
+                        </ul>
+                    </li>
+
                     <li class="nav-parent  @Html.IsActiveForController("BookManage")">
                         <a href="">
                             <span class="pull-right badge badge-success">2</span>

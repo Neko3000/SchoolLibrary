@@ -14,7 +14,7 @@ namespace SchoolLibrary.Controllers
         public ActionResult ShowAccountRecord(string id)
         {
             var books = (from singleRecord in db.BorrowingRecords
-                        where singleRecord.UserId.ToString() == id
+                        where (singleRecord.UserId.ToString() == id&&singleRecord.CurrentStatus=="借出")
                         select singleRecord.Book).ToList();
             return View(books);
         }
@@ -39,7 +39,8 @@ namespace SchoolLibrary.Controllers
                 {
                     UserId = new Guid(UserId),
                     Book = db.Books.Find(BookId),
-                    BorrowingTime=DateTime.Now
+                    BorrowingTime=DateTime.Now,
+                    CurrentStatus="借出"
                 };
                 db.BorrowingRecords.Add(record);
                 db.SaveChanges();            
